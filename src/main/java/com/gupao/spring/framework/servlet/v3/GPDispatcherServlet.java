@@ -89,11 +89,19 @@ public class GPDispatcherServlet extends HttpServlet {
         }
 
         // 处理req的参数位置
-        Integer reqIndex = handlerMapping.paramIndexMapping.get(HttpServletRequest.class.getName());
-        paramValues[reqIndex] = req;
-        // 处理req的参数位置
-        Integer respIndex = handlerMapping.paramIndexMapping.get(HttpServletResponse.class.getName());
-        paramValues[respIndex] = resp;
+        if (handlerMapping.paramIndexMapping.containsKey(HttpServletRequest.class.getName())){
+            Integer reqIndex = handlerMapping.paramIndexMapping.get(HttpServletRequest.class.getName());
+            paramValues[reqIndex] = req;
+
+        }
+
+        if (handlerMapping.paramIndexMapping.containsKey(HttpServletResponse.class.getName())){
+            // 处理req的参数位置
+            Integer respIndex = handlerMapping.paramIndexMapping.get(HttpServletResponse.class.getName());
+            paramValues[respIndex] = resp;
+
+        }
+
 
         Object returnValue = handlerMapping.method.invoke(handlerMapping.controller, paramValues);
         if (returnValue == null || returnValue instanceof  Void){

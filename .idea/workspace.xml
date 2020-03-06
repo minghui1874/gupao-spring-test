@@ -7,24 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69ff8b03-feb1-4f23-b080-effa61572a2b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gupao-spring-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gupao-spring-test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GPComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GPComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GPService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GPService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpAutowired.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpAutowired.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpPathVariable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpPathVariable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpPutMapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpPutMapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpRequestMapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpRequestMapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpRequestParam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/GpRequestParam.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/RequestMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/annotation/RequestMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/servlet/v2/GPDispatcherServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/framework/servlet/v2/GPDispatcherServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gupao/spring/service/TestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gupao/spring/service/TestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,44 +26,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="91" column="41" lean-forward="true" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GPDispatcherServlet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GPDispatcherServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="71" column="15" lean-forward="true" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
+            <state relative-caret-position="643">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
               <folding>
                 <element signature="e#11872#11873#0" expanded="true" />
                 <element signature="e#11913#11914#0" expanded="true" />
                 <element signature="e#11973#11974#0" expanded="true" />
                 <element signature="e#12025#12026#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GPDispatcherServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v2/GPDispatcherServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="106" column="68" selection-start-line="105" selection-start-column="36" selection-end-line="106" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -92,9 +49,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java" />
       </list>
     </option>
   </component>
@@ -419,12 +376,27 @@
       <option name="presentableId" value="Default" />
       <updated>1583473696532</updated>
       <workItem from="1583473700677" duration="737000" />
-      <workItem from="1583501042036" duration="6286000" />
+      <workItem from="1583501042036" duration="6943000" />
     </task>
+    <task id="LOCAL-00001" summary="提交">
+      <created>1583507536763</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583507536763</updated>
+    </task>
+    <task id="LOCAL-00002" summary="提交">
+      <created>1583507908891</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583507908891</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7023000" />
+    <option name="totallyTimeSpent" value="7680000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -442,7 +414,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" weight="0.32949877" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.17579722" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.17579722" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -450,7 +422,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.23829088" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.23829088" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32949877" />
       <window_info anchor="bottom" id="Messages" weight="0.33196384" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -460,7 +432,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32949877" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949877" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.7855382" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1888798" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1888798" />
       <window_info anchor="bottom" id="Problems" order="7" weight="0.32949877" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -481,6 +453,34 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>handlerMapping.method</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>handlerMapping.controller</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>handlerMapping.method.invoke(handlerMapping.controller, paramValues)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -504,23 +504,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/servlet/v3/GPDispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="71" column="15" lean-forward="true" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
+        <state relative-caret-position="643">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
           <folding>
             <element signature="e#11872#11873#0" expanded="true" />
             <element signature="e#11913#11914#0" expanded="true" />
             <element signature="e#11973#11974#0" expanded="true" />
             <element signature="e#12025#12026#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>

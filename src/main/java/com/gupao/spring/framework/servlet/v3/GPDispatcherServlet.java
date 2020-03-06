@@ -95,7 +95,10 @@ public class GPDispatcherServlet extends HttpServlet {
         Integer respIndex = handlerMapping.paramIndexMapping.get(HttpServletResponse.class.getName());
         paramValues[respIndex] = resp;
 
-        handlerMapping.method.invoke(handlerMapping.controller, paramValues);
+        Object returnValue = handlerMapping.method.invoke(handlerMapping.controller, paramValues);
+        if (returnValue == null || returnValue instanceof  Void){
+            resp.getWriter().write(returnValue.toString());
+        }
 
     }
 
@@ -116,7 +119,7 @@ public class GPDispatcherServlet extends HttpServlet {
 
     // url传过来的参数都是String类型的 ，HTTP是基于字符串协议
     // 只需要把String转换为对应类型就好
-    private Object convert(Class<?> type, String value) {
+    private Object  convert(Class<?> type, String value) {
         // 可以使用策略模式优化
         if (Integer.class == type) {
             return Integer.valueOf(value);

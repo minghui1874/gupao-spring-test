@@ -39,7 +39,7 @@ public class GPDispatcherServlet extends HttpServlet {
 
     // 保存url和method的对应关系
 //    private Map<String, Method> handlerMapping = new HashMap<>();
-
+    // 根据设计原则：单一职责，最少知道原则
     private List<HandlerMapping> handlerMapping = new ArrayList<>();
 
     @Override
@@ -61,52 +61,57 @@ public class GPDispatcherServlet extends HttpServlet {
 
 
     private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        //绝对路径
-        String url = req.getRequestURI();
 
-        //处理成相对路径
-        String contextPath = req.getContextPath();
-        url = url.replaceAll(contextPath, "").replaceAll("/+", "/");
-
-        if (!this.handlerMapping.containsKey(url)) {
+        HandlerMapping handlerMapping = getHandler(req);
+        if (handlerMapping == null) {
             resp.getWriter().write("404 NOT Found!!!");
             return;
         }
 
-        Method method = this.handlerMapping.get(url);
+        Method method = handlerMapping.getMethod();
+        // 获取方法形参列表
+        Class<?>[] paramTypes = handlerMapping.getParamTypes();
 
+        Object[] paramValues = new Object[paramTypes.length];
 
-        // 获取实参
         Map<String, String[]> params = req.getParameterMap();
+        for (Map.Entry<String, String[]> param : params.entrySet()) {
+            String value = Arrays.toString(param.getValue()).replaceAll("\\[|\\]", "")
+                    .replaceAll("\\s", ",");
 
-        // 获取方法形参
-        Class<?>[] parameterTypes = method.getParameterTypes();
-
-        Object[] paramValues = new Object[parameterTypes.length];
-
-        for (int i = 0; i < parameterTypes.length; i++) {
-            Class parameterType = parameterTypes[i];
-            // 不能用instanceof  parameterTypes 是形参不是实参，不能直接判断类型
-            if (parameterType == HttpServletRequest.class) {
-                paramValues[i] = req;
+            if (!handlerMapping.paramIndexMapping.containsKey(param.getKey())) {
                 continue;
-            } else if (parameterType == HttpServletResponse.class) {
-                paramValues[i] = resp;
-                continue;
-            } else {
-                // 把方法上的注解拿到，获取到一个二维数组
-                // 同一个方法可能有多个参数，且同一个参数上可以添加多个注解
-                // 所以是二维数组
-
             }
+
+            int index = handlerMapping.getParamIndexMapping().get(param.getKey());
+            paramValues[index] = convert(paramTypes[index], value);
+
         }
 
+        // 处理req的参数位置
+        Integer reqIndex = handlerMapping.paramIndexMapping.get(HttpServletRequest.class.getName());
+        paramValues[reqIndex] = req;
+        // 处理req的参数位置
+        Integer respIndex = handlerMapping.paramIndexMapping.get(HttpServletResponse.class.getName());
+        paramValues[respIndex] = resp;
 
-        // 通过反射拿到method所在的class，拿到class 之后再拿到class名称
-        //在调用首字母小写方法获取beanName
-        String beanName = toLowerFirstCase(method.getDeclaringClass().getSimpleName());
+        handlerMapping.method.invoke(handlerMapping.controller, paramValues);
 
-        method.invoke(ioc.get(beanName), paramValues);
+    }
+
+    private HandlerMapping getHandler(HttpServletRequest req) {
+        if (handlerMapping.isEmpty()) {
+            return null;
+        }
+
+        // 绝对路径
+        String url = req.getRequestURI();
+
+        //处理成相对路径
+        String contextPath = req.getContextPath();
+        String finalUrl = url.replaceAll(contextPath, "").replaceAll("/+", "/");
+        // 找出handlerMapping中匹配的url
+        return this.handlerMapping.stream().filter(mapping -> mapping.getUrl().equals(finalUrl)).findAny().orElse(null);
     }
 
     // url传过来的参数都是String类型的 ，HTTP是基于字符串协议
@@ -173,7 +178,7 @@ public class GPDispatcherServlet extends HttpServlet {
                 }
                 GpRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
                 String url = ("/" + baseUrl + "/" + requestMapping.name()).replaceAll("/+", "/");
-                handlerMapping.put(url, method);
+                this.handlerMapping.add(new HandlerMapping(url, entry.getValue(), method));
                 System.out.println("Mapped : " + url + "," + method);
             }
         }
@@ -321,33 +326,50 @@ public class GPDispatcherServlet extends HttpServlet {
 
         private Object controller;
 
+        private Class<?>[] paramTypes;
+
         // 形参列表
         // 参数名作为key， 参数的位置作为value
         private Map<String, Integer> paramIndexMapping;
 
-        public HandlerMapping(String url, Method method, Object controller) {
+        public HandlerMapping(String url, Object controller, Method method) {
             this.url = url;
             this.method = method;
             this.controller = controller;
 
-            paramIndexMapping= new HashMap<>();
+
+            paramTypes = method.getParameterTypes();
+            paramIndexMapping = new HashMap<>();
+            pubParamIndexMapping(method);
         }
 
-        private void pubParamIndexMapping(Method method){
+        private void pubParamIndexMapping(Method method) {
 
             Annotation[][] annotations = method.getParameterAnnotations();
             for (int i = 0; i < annotations.length; i++) {
                 for (Annotation annotation : annotations[i]) {
+                    // 只解析GPRequestParam
                     if (annotation instanceof GpRequestParam) {
+                        // 拿到注解修饰下的参数名称，去和url上的参数名进行匹配
                         String paramName = ((GpRequestParam) annotation).value();
                         if (!"".equals(paramName.trim())) {
+                            // 保存参数位置
                             paramIndexMapping.put(paramName, i);
                         }
                     }
                 }
             }
-            // 获取方法形参
+
+            // 获取方法中的request和response参数
             Class<?>[] parameterTypes = method.getParameterTypes();
+            for (int i = 0; i < parameterTypes.length; i++) {
+                Class<?> type = parameterTypes[i];
+                // 保存request和response的参数位置
+                if (type == HttpServletRequest.class ||
+                        type == HttpServletResponse.class) {
+                    paramIndexMapping.put(type.getName(), i);
+                }
+            }
 
         }
 
@@ -381,6 +403,14 @@ public class GPDispatcherServlet extends HttpServlet {
 
         public void setParamIndexMapping(Map<String, Integer> paramIndexMapping) {
             this.paramIndexMapping = paramIndexMapping;
+        }
+
+        public Class<?>[] getParamTypes() {
+            return paramTypes;
+        }
+
+        public void setParamTypes(Class<?>[] paramTypes) {
+            this.paramTypes = paramTypes;
         }
     }
 }

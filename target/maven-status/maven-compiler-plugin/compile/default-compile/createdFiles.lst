@@ -1,10 +1,12 @@
 com\gupao\spring\framework\annotation\GpPathVariable.class
-com\gupao\spring\framework\annotation\GPService.class
 com\gupao\spring\framework\annotation\GPComponent.class
 com\gupao\spring\framework\annotation\GpRequestMapping.class
-com\gupao\spring\framework\annotation\RequestMethod.class
-com\gupao\spring\service\TestService.class
-com\gupao\spring\framework\annotation\GpAutowired.class
-com\gupao\spring\framework\annotation\GpRequestParam.class
 com\gupao\spring\framework\servlet\v2\GPDispatcherServlet.class
 com\gupao\spring\framework\annotation\GpPutMapping.class
+com\gupao\spring\framework\annotation\GPService.class
+com\gupao\spring\framework\annotation\RequestMethod.class
+com\gupao\spring\service\TestService.class
+com\gupao\spring\framework\servlet\v3\GPDispatcherServlet$HandlerMapping.class
+com\gupao\spring\framework\annotation\GpAutowired.class
+com\gupao\spring\framework\annotation\GpRequestParam.class
+com\gupao\spring\framework\servlet\v3\GPDispatcherServlet.class

@@ -1,4 +1,4 @@
-package com.gupao.spring.controller;
+package com.gupao.spring.demo.controller;
 
 import com.gupao.spring.framework.annotation.GPController;
 import com.gupao.spring.framework.annotation.GpRequestMapping;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@GpRequestMapping(name = "/test")
+@GpRequestMapping(name = "/demo")
 @GPController
 public class TestController {
 

@@ -1,4 +1,4 @@
-package com.gupao.spring.service;
+package com.gupao.spring.demo.service;
 
 import com.gupao.spring.framework.annotation.GPService;
 

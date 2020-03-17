@@ -10,7 +10,7 @@ public class GPDefaultListableBeanFactory extends GPAbstractApplicationContext {
 
 
     // 存储注册信息的BeanDefinition
-    private final Map<String, GPBeanDefinition> beandefinitionMap = new ConcurrentHashMap<>(256);
+    protected final Map<String, GPBeanDefinition> beandefinitionMap = new ConcurrentHashMap<>(256);
 
 
 

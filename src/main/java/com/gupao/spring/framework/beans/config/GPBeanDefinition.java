@@ -14,4 +14,6 @@ public class GPBeanDefinition {
     // 工厂中的beanName
     private String factoryBeanName;
 
+    // 是否单例
+    private boolean isSingleton = true;
 }

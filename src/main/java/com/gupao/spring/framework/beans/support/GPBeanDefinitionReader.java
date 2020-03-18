@@ -51,18 +51,13 @@ public class GPBeanDefinitionReader {
     }
 
 
-    /**
-     * 把配置文件中扫描到的所有的配置信息转换为GPBeanDefinition对象
-     * @return
-     */
     public List<GPBeanDefinition> loadBeanDefinitions() {
         List<GPBeanDefinition> result = new ArrayList<>();
         for (String className : registryBeanClass) {
             GPBeanDefinition beanDefinition = doCreateBeanDefinition(className);
-            if (null == beanDefinition) {
-                continue;
+            if (null != beanDefinition) {
+                result.add(beanDefinition);
             }
-            result.add(beanDefinition);
         }
         return result;
     }

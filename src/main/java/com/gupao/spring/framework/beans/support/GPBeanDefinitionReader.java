@@ -1,11 +1,13 @@
 
 package com.gupao.spring.framework.beans.support;
 
+import com.gupao.spring.framework.annotation.GPComponent;
 import com.gupao.spring.framework.beans.config.GPBeanDefinition;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class GPBeanDefinitionReader {
     }
 
     private void doScanner(String scanPackage) {
-        URL url = this.getClass().getClassLoader().getResource("/" + scanPackage.replaceAll("\\.", "/"));
+        URL url = this.getClass().getResource("/" + scanPackage.replaceAll("\\.", "/"));
         File classPath = new File(url.getFile());
         for (File file : classPath.listFiles()) {
             if (file.isDirectory()) {
@@ -73,6 +75,11 @@ public class GPBeanDefinitionReader {
 
         try {
             Class<?> beanClass = Class.forName(className);
+
+            if (!checkHasComponentAnnotation(beanClass.getAnnotations())) {
+                return null;
+
+            }
             // 有可能是一个接口,用他的实现类作为beanClassName
             if (beanClass.isInterface()) {
                 return null;
@@ -88,6 +95,21 @@ public class GPBeanDefinitionReader {
         }
         return null;
 
+    }
+
+    private boolean checkHasComponentAnnotation(Annotation[] annotations) {
+        boolean hasComponentAnnotation = false;
+        for (Annotation annotation : annotations) {
+            if (!hasComponentAnnotation) {
+                hasComponentAnnotation = annotation.annotationType().isAnnotationPresent(GPComponent.class);
+            }
+        }
+        if (!hasComponentAnnotation) {
+            for (Annotation annotation : annotations) {
+                hasComponentAnnotation = checkHasComponentAnnotation(annotation.getClass().getAnnotations());
+            }
+        }
+        return hasComponentAnnotation;
     }
 
     /**

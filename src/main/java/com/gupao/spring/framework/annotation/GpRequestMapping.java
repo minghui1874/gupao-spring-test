@@ -47,8 +47,6 @@ import java.lang.annotation.Target;
  * <p><strong>Note:</strong> This annotation can be used both at the class and
  * at the method level. In most cases, at the method level applications will
  * prefer to use one of the HTTP method specific variants
- * {@link GetMapping @GetMapping}, {@link GpPostMapping @PostMapping},
- * {@link GpPatchMapping @PatchMapping}.</p>
  *
  * <p><b>NOTE:</b> When using controller interfaces (e.g. for AOP proxying),
  * make sure to consistently put <i>all</i> your mapping annotations - such as
@@ -71,5 +69,5 @@ public @interface GpRequestMapping {
 	 * When used on both levels, a combined name is derived by concatenation
 	 * with "#" as separator.
 	 */
-	String name() default "";
+	String value() default "";
 }

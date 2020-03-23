@@ -11,6 +11,7 @@ public class GPBeanWrapper {
 
     public GPBeanWrapper(Object wrappedInstance) {
         this.wrappedInstance = wrappedInstance;
+        this.wrappedClass = wrappedInstance.getClass();
     }
 
 

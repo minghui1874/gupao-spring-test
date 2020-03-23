@@ -179,7 +179,7 @@ public class GPDispatcherServlet extends HttpServlet {
             String baseUrl = "";
             if (clazz.isAnnotationPresent(requestMappingClass)) {
                 GpRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
-                baseUrl = requestMapping.name();
+                baseUrl = requestMapping.value();
             }
 
             // 获取所有的public方法
@@ -188,7 +188,7 @@ public class GPDispatcherServlet extends HttpServlet {
                     continue;
                 }
                 GpRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
-                String url = ("/" + baseUrl + "/" + requestMapping.name()).replaceAll("/+", "/");
+                String url = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("/+", "/");
                 this.handlerMapping.add(new HandlerMapping(url, entry.getValue(), method));
                 System.out.println("Mapped : " + url + "," + method);
             }

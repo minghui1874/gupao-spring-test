@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@GpRequestMapping(name = "/demo")
+@GpRequestMapping("/demo")
 @GPController
 public class TestController {
 
-    @GpRequestMapping(name = "/print")
+    @GpRequestMapping("/print")
     public void test(HttpServletRequest request, HttpServletResponse response,
                      @GpRequestParam("name") String name) {
         try {
@@ -21,7 +21,7 @@ public class TestController {
             e.printStackTrace();
         }
     }
-    @GpRequestMapping(name = "/add")
+    @GpRequestMapping("/add")
     public void test(HttpServletRequest request, HttpServletResponse response,
                      @GpRequestParam("a") Integer a,
                      @GpRequestParam("b") Integer b) {

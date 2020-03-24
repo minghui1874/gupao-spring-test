@@ -7,16 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69ff8b03-feb1-4f23-b080-effa61572a2b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPViewResolver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/layouts/404.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/layouts/500.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/context/GPApplicationContext.java" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/context/GPApplicationContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPDispatcherServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPDispatcherServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPHandlerAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPHandlerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPModelAndView.java" afterPath="$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPModelAndView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,7 +34,7 @@
       <file leaf-file-name="GPDispatcherServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPDispatcherServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="284">
               <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -586,7 +577,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583728813102</updated>
       <workItem from="1583728815875" duration="5753000" />
-      <workItem from="1584419702941" duration="22862000" />
+      <workItem from="1584419702941" duration="22905000" />
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1584423559312</created>
@@ -609,11 +600,18 @@
       <option name="project" value="LOCAL" />
       <updated>1584942138219</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="提交">
+      <created>1585028618048</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585028618048</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32471000" />
+    <option name="totallyTimeSpent" value="32514000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1195,7 +1193,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gupao/spring/framework/webmvc/servlet/GPDispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="284">
           <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />

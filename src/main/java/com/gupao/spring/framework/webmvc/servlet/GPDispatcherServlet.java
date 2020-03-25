@@ -82,6 +82,15 @@ public class GPDispatcherServlet extends HttpServlet {
     }
 
     private GPHandlerAdapter getHandlerAdapter(GPHandlerMapping handler) {
+        if (this.handlerAdapters.isEmpty()) {
+            return null;
+        }
+
+        GPHandlerAdapter ha = this.handlerAdapters.get(handler);
+        if (ha.supports(handler)) {
+            return ha;
+        }
+
         return null;
     }
 

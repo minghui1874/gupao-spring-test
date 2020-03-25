@@ -84,9 +84,13 @@ public class GPHandlerAdapter {
 
         Object returnValue = handlerMapping.getMethod().invoke(handlerMapping.getController(), paramValues);
         if (returnValue == null || returnValue instanceof Void) {
-            response.getWriter().write(returnValue.toString());
+            return null;
         }
 
+        boolean isModelAndView = handlerMapping.getMethod().getReturnType() == GPModelAndView.class;
+        if (isModelAndView) {
+            return (GPModelAndView) returnValue;
+        }
 
         return null;
     }

@@ -73,6 +73,7 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
         }
     }
 
+    @Override
     public Object getBean(Class<?> clazz) throws Exception {
         return this.getBean(clazz.getName());
     }
@@ -105,7 +106,7 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
         // 3. 注入
         populateBean(beanName, beanDefinition, beanWrapper);
 
-        return factoryBeanInstanceCache.get(beanName);
+        return factoryBeanInstanceCache.get(beanName).getWrappedInstance();
     }
 
     private void populateBean(String beanName, GPBeanDefinition gpBeanDefinition, GPBeanWrapper gpBeanWrapper) {

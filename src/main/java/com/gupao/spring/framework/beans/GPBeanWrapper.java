@@ -1,8 +1,5 @@
 package com.gupao.spring.framework.beans;
 
-import lombok.Data;
-
-@Data
 public class GPBeanWrapper {
 
     private Object wrappedInstance;
@@ -24,4 +21,11 @@ public class GPBeanWrapper {
         return this.wrappedClass;
     }
 
+    public void setWrappedInstance(Object wrappedInstance) {
+        this.wrappedInstance = wrappedInstance;
+    }
+
+    public void setWrappedClass(Class<?> wrappedClass) {
+        this.wrappedClass = wrappedClass;
+    }
 }

@@ -43,7 +43,7 @@ public class GPDispatcherServlet extends HttpServlet {
         try {
             doDispatch(req, resp);
         } catch (Exception e) {
-//            new GPModelAndView("500");
+//            processDispatchResult(req, resp, new GPModelAndView("500"));
             resp.getWriter().write("500 Exception , Detail : " + Arrays.toString(e.getStackTrace()));
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class GPDispatcherServlet extends HttpServlet {
         GPHandlerMapping handler = getHandler(req);
 
         if (handler == null) {
-//            new GPModelAndView("404");
+            processDispatchResult(req, resp, new GPModelAndView("404"));
             return;
         }
 
@@ -63,18 +63,30 @@ public class GPDispatcherServlet extends HttpServlet {
         GPHandlerAdapter ha = getHandlerAdapter(handler);
 
         // 3. 调用方法, 返回GPModelAndView存储了要传到页面上的值和页面模板的名称
-        GPModelAndView view = ha.handle(req, resp, handler);
+        GPModelAndView mv = ha.handle(req, resp, handler);
 
         // 4. 渲染视图
-        processDispatchResult(req, resp, view);
+        processDispatchResult(req, resp, mv);
 
     }
 
-    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, GPModelAndView view) {
+    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, GPModelAndView mv) throws Exception {
 
         // 把给我的ModelAndView变成一个HTML、OutStream。json等
         // Context-Type
-        if (null == view) {
+        if (null == mv) {
+            return;
+        }
+
+        // 如果modelAndView不为null，那么渲染视图
+        if (this.viewResolvers.isEmpty()) {
+            return;
+        }
+
+
+        for (GPViewResolver viewResolver : this.viewResolvers) {
+            GPView view = viewResolver.resolveViewName(mv.getViewName(), null);
+            view.render(mv.getModel(), req, resp);
             return;
         }
 

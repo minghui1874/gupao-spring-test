@@ -4,8 +4,8 @@ package com.gupao.spring.framework.servlet.v2;
 import com.gupao.spring.framework.annotation.GPController;
 import com.gupao.spring.framework.annotation.GPService;
 import com.gupao.spring.framework.annotation.GpAutowired;
-import com.gupao.spring.framework.annotation.GpRequestMapping;
-import com.gupao.spring.framework.annotation.GpRequestParam;
+import com.gupao.spring.framework.annotation.GPRequestMapping;
+import com.gupao.spring.framework.annotation.GPRequestParam;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -98,8 +98,8 @@ public class GPDispatcherServlet extends HttpServlet {
                 Annotation[][] annotations = method.getParameterAnnotations();
                 for (int j = 0; j < annotations.length; j++) {
                     for (Annotation annotation : annotations[j]) {
-                        if (annotation instanceof GpRequestParam) {
-                            String paramName = ((GpRequestParam) annotation).value();
+                        if (annotation instanceof GPRequestParam) {
+                            String paramName = ((GPRequestParam) annotation).value();
                             if (!"".equals(paramName.trim())) {
                                 if (params.containsKey(paramName)) {
 //                                    for (Map.Entry<String, String[]> param : params.entrySet()) {
@@ -167,7 +167,7 @@ public class GPDispatcherServlet extends HttpServlet {
             return;
         }
 
-        Class<GpRequestMapping> requestMappingClass = GpRequestMapping.class;
+        Class<GPRequestMapping> requestMappingClass = GPRequestMapping.class;
         for (Map.Entry<String, Object> entry : ioc.entrySet()) {
             Class<?> clazz = entry.getValue().getClass();
 
@@ -177,7 +177,7 @@ public class GPDispatcherServlet extends HttpServlet {
 
             String baseUrl = "";
             if (clazz.isAnnotationPresent(requestMappingClass)) {
-                GpRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
+                GPRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
                 baseUrl = requestMapping.value();
             }
 
@@ -186,7 +186,7 @@ public class GPDispatcherServlet extends HttpServlet {
                 if (!method.isAnnotationPresent(requestMappingClass)) {
                     continue;
                 }
-                GpRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
+                GPRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
                 String url = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("/+", "/");
                 handlerMapping.put(url, method);
                 System.out.println("Mapped : " + url + "," + method);

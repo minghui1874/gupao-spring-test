@@ -1,6 +1,6 @@
 package com.gupao.spring.framework.webmvc.servlet;
 
-import com.gupao.spring.framework.annotation.GpRequestParam;
+import com.gupao.spring.framework.annotation.GPRequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +30,8 @@ public class GPHandlerAdapter {
         Annotation[][] annotations = handlerMapping.getMethod().getParameterAnnotations();
         for (int i = 0; i < annotations.length; i++) {
             for (Annotation annotation : annotations[i]) {
-                if (annotation instanceof GpRequestParam) {
-                    String paramName = ((GpRequestParam) annotation).value();
+                if (annotation instanceof GPRequestParam) {
+                    String paramName = ((GPRequestParam) annotation).value();
                     if (!"".equals(paramName.trim())) {
                         paramIndexMapping.put(paramName, i);
                     }

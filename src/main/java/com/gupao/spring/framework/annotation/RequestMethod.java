@@ -18,7 +18,7 @@ package com.gupao.spring.framework.annotation;
 
 /**
  * Java 5 enumeration of HTTP request methods. Intended for use with the
- * {@link GpRequestMapping#method()} attribute of the {@link GpRequestMapping} annotation.
+ * {@link GPRequestMapping#method()} attribute of the {@link GPRequestMapping} annotation.
  *
  * supports GET, HEAD, POST, PUT, PATCH and DELETE only. DispatcherServlet will
  * process TRACE and OPTIONS with the default HttpServlet behavior unless explicitly
@@ -27,7 +27,7 @@ package com.gupao.spring.framework.annotation;
  *
  * @author Juergen Hoeller
  * @since 2.5
- * @see GpRequestMapping
+ * @see GPRequestMapping
  */
 public enum RequestMethod {
 

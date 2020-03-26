@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors.
+ * Copyright 2002-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.gupao.spring.framework.annotation;
 
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,28 +23,51 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation indicating a method parameter should be bound to the body of the web request.
- * method argument depending on the content type of the request. Optionally, automatic
- * validation can be applied by annotating the argument with {@code @Valid}.
+ * Annotation for mapping HTTP {@code PUT} requests onto specific handler
+ * methods.
  *
- * <p>Supported for annotated handler methods.
+ * <p>Specifically, {@code @PutMapping} is a <em>composed annotation</em> that
+ * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.PUT)}.
  *
- * @author Arjen Poutsma
- * @since 3.0
- * @see GpRequestHeader
+ * @author Sam Brannen
+ * @since 4.3
+ * @see GetMapping
+ * @see GpPostMapping
+ * @see GpPatchMapping
+ * @see GPRequestMapping
  */
-@Target(ElementType.PARAMETER)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface GpRequestBody {
+public @interface GPPutMapping {
 
 	/**
-	 * Whether body content is required.
-	 * <p>Default is {@code true}, leading to an exception thrown in case
-	 * there is no body content. Switch this to {@code false} if you prefer
-	 * {@code null} to be passed when the body content is {@code null}.
-	 * @since 3.2
+	 * Alias for {@link GPRequestMapping#name}.
 	 */
-	boolean required() default true;
+	String name() default "";
+
+	/**
+	 */
+	String[] value() default {};
+
+	/**
+	 */
+	String[] path() default {};
+
+	/**
+	 */
+	String[] params() default {};
+
+	/**
+	 */
+	String[] headers() default {};
+
+	/**
+	 */
+	String[] consumes() default {};
+
+	/**
+	 */
+	String[] produces() default {};
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2016 the original author or authors.
+ * Copyright 2002-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,52 +22,30 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Annotation for mapping HTTP {@code PUT} requests onto specific handler
- * methods.
- *
- * <p>Specifically, {@code @PutMapping} is a <em>composed annotation</em> that
- * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.PUT)}.
- *
- * @author Sam Brannen
- * @since 4.3
- * @see GetMapping
- * @see GpPostMapping
- * @see GpPatchMapping
- * @see GpRequestMapping
- */
-@Target(ElementType.METHOD)
+
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface GpPutMapping {
+public @interface GPRequestParam {
 
 	/**
-	 * Alias for {@link GpRequestMapping#name}.
+	 * Alias for {@link #name}.
+	 */
+	String value() default "";
+
+	/**
+	 * The name of the request parameter to bind to.
+	 * @since 4.2
 	 */
 	String name() default "";
 
 	/**
+	 * Whether the parameter is required.
+	 * <p>Defaults to {@code true}, leading to an exception being thrown
+	 * if the parameter is missing in the request. Switch this to
+	 * {@code false} if you prefer a {@code null} value if the parameter is
+	 * not present in the request.
+	 * sets this flag to {@code false}.
 	 */
-	String[] value() default {};
-
-	/**
-	 */
-	String[] path() default {};
-
-	/**
-	 */
-	String[] params() default {};
-
-	/**
-	 */
-	String[] headers() default {};
-
-	/**
-	 */
-	String[] consumes() default {};
-
-	/**
-	 */
-	String[] produces() default {};
-
+	boolean required() default true;
 }

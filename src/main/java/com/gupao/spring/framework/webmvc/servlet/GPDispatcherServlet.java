@@ -1,7 +1,7 @@
 package com.gupao.spring.framework.webmvc.servlet;
 
 import com.gupao.spring.framework.annotation.GPController;
-import com.gupao.spring.framework.annotation.GpRequestMapping;
+import com.gupao.spring.framework.annotation.GPRequestMapping;
 import com.gupao.spring.framework.context.GPApplicationContext;
 
 import javax.servlet.ServletConfig;
@@ -199,10 +199,10 @@ public class GPDispatcherServlet extends HttpServlet {
 
 
                 String baseUrl = "";
-                Class<GpRequestMapping> requestMappingClass = GpRequestMapping.class;
+                Class<GPRequestMapping> requestMappingClass = GPRequestMapping.class;
                 // 获取controller的url配置
                 if (clazz.isAnnotationPresent(requestMappingClass)) {
-                    GpRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
+                    GPRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
                     baseUrl = requestMapping.value();
                 }
 
@@ -215,7 +215,7 @@ public class GPDispatcherServlet extends HttpServlet {
                         continue;
                     }
                     // 获取映射的URL
-                    GpRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
+                    GPRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
                     String regex = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("\\*", ".*")
                             .replaceAll("/+", "/");
                     Pattern pattern = Pattern.compile(regex);

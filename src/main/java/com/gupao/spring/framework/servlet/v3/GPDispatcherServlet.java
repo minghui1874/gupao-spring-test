@@ -4,8 +4,8 @@ package com.gupao.spring.framework.servlet.v3;
 import com.gupao.spring.framework.annotation.GPController;
 import com.gupao.spring.framework.annotation.GPService;
 import com.gupao.spring.framework.annotation.GpAutowired;
-import com.gupao.spring.framework.annotation.GpRequestMapping;
-import com.gupao.spring.framework.annotation.GpRequestParam;
+import com.gupao.spring.framework.annotation.GPRequestMapping;
+import com.gupao.spring.framework.annotation.GPRequestParam;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -168,7 +168,7 @@ public class GPDispatcherServlet extends HttpServlet {
             return;
         }
 
-        Class<GpRequestMapping> requestMappingClass = GpRequestMapping.class;
+        Class<GPRequestMapping> requestMappingClass = GPRequestMapping.class;
         for (Map.Entry<String, Object> entry : ioc.entrySet()) {
             Class<?> clazz = entry.getValue().getClass();
 
@@ -178,7 +178,7 @@ public class GPDispatcherServlet extends HttpServlet {
 
             String baseUrl = "";
             if (clazz.isAnnotationPresent(requestMappingClass)) {
-                GpRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
+                GPRequestMapping requestMapping = clazz.getAnnotation(requestMappingClass);
                 baseUrl = requestMapping.value();
             }
 
@@ -187,7 +187,7 @@ public class GPDispatcherServlet extends HttpServlet {
                 if (!method.isAnnotationPresent(requestMappingClass)) {
                     continue;
                 }
-                GpRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
+                GPRequestMapping requestMapping = method.getAnnotation(requestMappingClass);
                 String url = ("/" + baseUrl + "/" + requestMapping.value()).replaceAll("/+", "/");
                 this.handlerMapping.add(new HandlerMapping(url, entry.getValue(), method));
                 System.out.println("Mapped : " + url + "," + method);
@@ -360,9 +360,9 @@ public class GPDispatcherServlet extends HttpServlet {
             for (int i = 0; i < annotations.length; i++) {
                 for (Annotation annotation : annotations[i]) {
                     // 只解析GPRequestParam
-                    if (annotation instanceof GpRequestParam) {
+                    if (annotation instanceof GPRequestParam) {
                         // 拿到注解修饰下的参数名称，去和url上的参数名进行匹配
-                        String paramName = ((GpRequestParam) annotation).value();
+                        String paramName = ((GPRequestParam) annotation).value();
                         if (!"".equals(paramName.trim())) {
                             // 保存参数位置
                             paramIndexMapping.put(paramName, i);

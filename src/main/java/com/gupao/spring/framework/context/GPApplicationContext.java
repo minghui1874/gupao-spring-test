@@ -3,6 +3,11 @@ package com.gupao.spring.framework.context;
 import com.gupao.spring.framework.annotation.GPController;
 import com.gupao.spring.framework.annotation.GPService;
 import com.gupao.spring.framework.annotation.GpAutowired;
+import com.gupao.spring.framework.aop.GPAopProxy;
+import com.gupao.spring.framework.aop.GPCglibAopProxy;
+import com.gupao.spring.framework.aop.GPJdkDynamicAopProxy;
+import com.gupao.spring.framework.aop.config.GPAopConfig;
+import com.gupao.spring.framework.aop.support.GPAdvisedSupport;
 import com.gupao.spring.framework.beans.GPBeanFactory;
 import com.gupao.spring.framework.beans.GPBeanWrapper;
 import com.gupao.spring.framework.beans.config.GPBeanDefinition;
@@ -23,7 +28,7 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
     private GPBeanDefinitionReader reader;
 
     // 单例的IOC容器
-    private Map<String, Object> singletonObjects = new ConcurrentHashMap<>();
+    private Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<>();
 
     // 通用的IOC容器
     private Map<String, GPBeanWrapper> factoryBeanInstanceCache = new ConcurrentHashMap<>();
@@ -97,6 +102,9 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
         // 把反射获取的对象封装到BeanWrapper中
         GPBeanWrapper beanWrapper = new GPBeanWrapper(instance);
 
+        // 创建代理策略，CGLIB / JDK
+//        createProxy();
+
         // 2. 拿到beanWrapper之后，把beanWrapper保存到IOC容器中
         factoryBeanInstanceCache.put(beanName, beanWrapper);
 
@@ -159,19 +167,30 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
             return null;
         }
         // 1. 拿到要实例化的对象类名
-        String beanClassName = gpBeanDefinition.getBeanClassName();
+        String className = gpBeanDefinition.getBeanClassName();
 
         // 2. 反射实例化
         Object instance = null;
         try {
-            if (this.singletonObjects.containsKey(beanClassName)) {
-                instance = this.singletonObjects.get(beanClassName);
+            if (this.factoryBeanObjectCache.containsKey(className)) {
+                instance = this.factoryBeanObjectCache.get(className);
             } else {
 
-                Class<?> clazz = Class.forName(beanClassName);
+                Class<?> clazz = Class.forName(className);
                 instance = clazz.newInstance();
-                this.singletonObjects.put(beanClassName, instance);
-                this.singletonObjects.put(gpBeanDefinition.getFactoryBeanName(), instance);
+
+                GPAdvisedSupport config = instantionAopConfig(gpBeanDefinition);
+                config.setTargetClass(clazz);
+                config.setTarget(instance);
+
+                //符合PointCut的规则的话，就将代理对象
+                if (config.pointCutMatch()) {
+                    instance = createProxy(config).getProxy();
+                }
+
+                instance = clazz.newInstance();
+                this.factoryBeanObjectCache.put(className, instance);
+                this.factoryBeanObjectCache.put(gpBeanDefinition.getFactoryBeanName(), instance);
             }
 
         } catch (Exception e) {
@@ -181,6 +200,26 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
 
         return instance;
 
+    }
+
+    private GPAopProxy createProxy(GPAdvisedSupport config) {
+        Class<?> targetClass = config.getTargetClass();
+        if (targetClass.getInterfaces().length > 0){
+            return new GPJdkDynamicAopProxy(config);
+        }
+
+        return new GPCglibAopProxy(config);
+    }
+
+    private GPAdvisedSupport instantionAopConfig(GPBeanDefinition gpBeanDefinition) {
+        GPAopConfig config = new GPAopConfig();
+        config.setPointCut(this.reader.getConfig().getProperty("pointCut"));
+        config.setAspectClass(this.reader.getConfig().getProperty("aspectClass"));
+        config.setAspectBefore(this.reader.getConfig().getProperty("aspectBefore"));
+        config.setAspectAfter(this.reader.getConfig().getProperty("aspectAfter"));
+        config.setAspectAfterThrow(this.reader.getConfig().getProperty("aspectAfterThrow"));
+        config.setAspectAfterThrowingName(this.reader.getConfig().getProperty("aspectAfterThrowingName"));
+        return new GPAdvisedSupport(config);
     }
 
     public String[] getBeanDefinitionNames() {

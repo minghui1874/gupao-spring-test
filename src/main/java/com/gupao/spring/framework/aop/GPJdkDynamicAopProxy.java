@@ -6,6 +6,7 @@ import com.gupao.spring.framework.aop.support.GPAdvisedSupport;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 public class GPJdkDynamicAopProxy implements GPAopProxy, InvocationHandler{
 
@@ -28,8 +29,10 @@ public class GPJdkDynamicAopProxy implements GPAopProxy, InvocationHandler{
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        List<Object> interceptorsAndDynamicMethodMatchers =
+                this.advised.getInterceptorsAndDynamicInterceptionAdvice(method,this.advised.getTargetClass());
         GPMethodInvocation invocation =
-                new GPMethodInvocation(proxy, null, method, args, this.advised.getTargetClass(), null);
+                new GPMethodInvocation(proxy, this.advised.getTarget(), method, args, this.advised.getTargetClass(), interceptorsAndDynamicMethodMatchers);
         return invocation.proceed();
     }
 }
